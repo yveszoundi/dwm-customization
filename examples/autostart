@@ -1,0 +1,25 @@
+# this 'autostart' file can be place in $HOME/.config/dwm/
+
+# statusbar loop
+while true; do
+   status_ssid=`iwgetid -r`
+   xsetroot -name "${status_ssid} | $( date +"%F %R" ) "
+   sleep 1m    # Update time every minute
+done &
+
+# monitors
+mon_count=$(xrandr --query | grep " connected" | cut -d" " -f1 | wc -l)
+if [[ "2" == $mon_count ]]
+then    
+    xrandr --auto --output VGA-1 --mode 1920x1080 --left-of eDP-1 --primary;
+    xrandr --auto --output eDP-1 --mode 1920x1080 --right-of VGA-1 --pos 1920x1080+1920+0;
+fi
+
+# switch capslock with control
+setxkbmap -option ctrl:swapcaps
+
+# audio
+start-pulseaudio-x11 &
+
+# for java apps
+wmname LG3D

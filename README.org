@@ -1,0 +1,38 @@
+#+TITLE: DWM window manager customizations
+
+This is my dwm configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] a la [[https://stumpwm.github.io/][stumpwm]] or [[https://www.nongnu.org/ratpoison/][ratpoison]].
+
+* Customizations
+
+- [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] in =config.h=.
+- [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]
+- [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]
+- [[https://dwm.suckless.org/patches/autostart/][autostart variation]] with a non-blocking script at =$HOME/.config/dwm/autostart=.
+
+Customizations are in-place in the =config.h= file instead of =config.def.h=.
+
+* Requirements
+
+In order to build dwm you need the Xlib header files.
+
+* Installation
+
+dwm is installed into the =/usr/local= namespace by default.
+
+Afterwards enter the following command to build and install dwm (if
+necessary as root):
+
+#+BEGIN_SRC sh
+  make clean install
+#+END_SRC
+
+* Running dwm
+Add the following line to your .xinitrc to start dwm using startx:
+
+#+BEGIN_SRC sh
+  exec dwm
+#+END_SRC
+
+* Screenshot
+
+[[file:images/screenshot.png]]
