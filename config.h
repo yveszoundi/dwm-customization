@@ -65,9 +65,13 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 				  "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+
 static Key keys[] = {
 	/* modifier                   key                function        argument */
 	{ None,                       XK_Return,         spawn,          {.v = dmenucmd } },
+	{ None,                       XK_s,              spawn,          {.v = scratchpadcmd } },
 	{ None,                       XK_c,              spawn,          {.v = termcmd } },
 	{ None,                       XK_b,              togglebar,      {0} },
 	{ None,                       XK_n,              focusstack,     {.i = +1 } },
@@ -86,7 +90,7 @@ static Key keys[] = {
 	{ ShiftMask,                  XK_space,          togglefloating, {0} },
 	{ None,                       XK_0,              view,           {.ui = ~0 } },
 	{ ShiftMask,                  XK_0,              tag,            {.ui = ~0 } },
-	{ None,                       XK_comma,          focusmon,       {.i = -1 } },
+	{ None,                       XK_j,          focusmon,       {.i = -1 } },
 	{ None,                       XK_period,         tagmon,         {.i = -1 } },
 	{ None,                       XK_q,              quit,           {0} },
 	TAGKEYS(                      XK_1,                      0)

@@ -8,6 +8,7 @@ This is my dwm configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree
 - [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]
 - [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]
 - [[https://dwm.suckless.org/patches/autostart/][autostart variation]] with a non-blocking script at =$HOME/.config/dwm/autostart=.
+- [[https://dwm.suckless.org/patches/scratchpad/dwm-scratchpad-20170207-bb3bd6f.diff][scratchpad]]
 
 Customizations are in-place in the =config.h= file instead of =config.def.h=.
 
