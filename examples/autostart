@@ -1,13 +1,13 @@
-# this 'autostart' file can be place in $HOME/.config/dwm/
-
 # statusbar loop
 while true; do
    status_ssid=`iwgetid -r`
-   xsetroot -name "${status_ssid} | $( date +"%F %R" ) "
-   sleep 1m    # Update time every minute
+   status_vol=`amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }'`
+   status_bat=`cat /sys/class/power_supply/BAT0/capacity`
+   xsetroot -name "b: ${status_bat}% | v:${status_vol} | ${status_ssid} | $( date +"%F %R" ) "
+   sleep 10s    # Update time every 10 seconds
 done &
 
-# monitors
+# autostart section
 mon_count=$(xrandr --query | grep " connected" | cut -d" " -f1 | wc -l)
 if [[ "2" == $mon_count ]]
 then    
@@ -15,7 +15,7 @@ then
     xrandr --auto --output eDP-1 --mode 1920x1080 --right-of VGA-1 --pos 1920x1080+1920+0;
 fi
 
-# switch capslock with control
+# capslock
 setxkbmap -option ctrl:swapcaps
 
 # audio

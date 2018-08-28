@@ -5,7 +5,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Dejavu Sans Mono:size=10" };
+static const char *fonts[]          = { "Terminus:size=15" };
+//static const char dmenufont[]       = "-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*";
 static const char dmenufont[]       = "-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*";
 static const char normbordercolor[] = "#222222";
 static const char normbgcolor[]     = "#444444";
@@ -13,6 +14,14 @@ static const char normfgcolor[]     = "#bbbbbb";
 static const char selbordercolor[]  = "#005577";
 static const char selbgcolor[]      = "#eeeeee";
 static const char selfgcolor[]      = "#005577";
+
+/* static const char normbordercolor[] = "#ff0000"; */
+/* static const char normbgcolor[]     = "#ff0000"; */
+/* static const char normfgcolor[]     = "#000000"; */
+/* static const char selbordercolor[]  = "#ffff00"; */
+/* static const char selbgcolor[]      = "#ffff00"; */
+/* static const char selfgcolor[]      = "#000000"; */
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { normfgcolor, normbordercolor, normbgcolor },
@@ -37,7 +46,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -68,8 +77,20 @@ static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
+static const char *volmutecmd[]      = { "amixer", "-q", "set", "Master", "toggle", NULL };
+static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "5%+", NULL };
+static const char *voldncmd[] = { "amixer", "-q", "set", "Master", "5%-", NULL };
+
+/* Multimedia keys - check keys values using 'xev' */
+#define XF86AudioMute			0x1008ff12
+#define XF86AudioLowerVolume	0x1008ff11
+#define XF86AudioRaiseVolume	0x1008ff13
+
 static Key keys[] = {
 	/* modifier                   key                function        argument */
+    { 0,		                   XF86AudioMute,    spawn,          {.v = volmutecmd } },
+	{ 0,	               XF86AudioRaiseVolume,     spawn,          {.v = volupcmd } },
+    { 0,                       XF86AudioLowerVolume, spawn,          {.v = voldncmd } },
 	{ None,                       XK_Return,         spawn,          {.v = dmenucmd } },
 	{ None,                       XK_s,              spawn,          {.v = scratchpadcmd } },
 	{ None,                       XK_c,              spawn,          {.v = termcmd } },
@@ -90,7 +111,7 @@ static Key keys[] = {
 	{ ShiftMask,                  XK_space,          togglefloating, {0} },
 	{ None,                       XK_0,              view,           {.ui = ~0 } },
 	{ ShiftMask,                  XK_0,              tag,            {.ui = ~0 } },
-	{ None,                       XK_j,          focusmon,       {.i = -1 } },
+	{ None,                       XK_j,              focusmon,       {.i = -1 } },
 	{ None,                       XK_period,         tagmon,         {.i = -1 } },
 	{ None,                       XK_q,              quit,           {0} },
 	TAGKEYS(                      XK_1,                      0)
