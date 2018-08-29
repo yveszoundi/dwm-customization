@@ -36,4 +36,4 @@ Add the following line to your .xinitrc to start dwm using startx:
 
 * Screenshot
 
-[[file:images/screenshot.png]]
+[[file:images/screenshot_fedora.png]]
