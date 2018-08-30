@@ -1,6 +1,6 @@
 #+TITLE: DWM window manager customizations
 
-This is my dwm configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] a la [[https://stumpwm.github.io/][stumpwm]] or [[https://www.nongnu.org/ratpoison/][ratpoison]].
+This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] a la [[https://stumpwm.github.io/][stumpwm]] or [[https://www.nongnu.org/ratpoison/][ratpoison]].
 
 * Customizations
 
