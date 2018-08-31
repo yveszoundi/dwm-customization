@@ -482,6 +482,7 @@ void
 cleanup(void)
 {
 	Arg a = {.ui = ~0};
+	
 	Layout foo = { "", NULL };
 	Monitor *m;
 	size_t i;
@@ -1410,6 +1411,11 @@ run(void)
 	XSync(dpy, False);
     
     runAutostart();
+    
+    // Select primary monitor
+    Arg a = {.i = 0};
+    const Arg *primary_mon = &a;
+    focusmon(primary_mon);
     
 	while (running && !XNextEvent(dpy, &ev))
 		if (handler[ev.type])
