@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-# statusbar with wifi ssid, volume and battery indicators, then date
+# statusbar loop
 while true; do
    status_ssid=`iwgetid -r`
    status_vol=`amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }'`
    status_bat=`cat /sys/class/power_supply/BAT0/capacity`
-   xsetroot -name " [BAT ${status_bat}%] | [VOL ${status_vol}] | [SSID ${status_ssid}] | $( date +"%F %R" ) "
+   xsetroot -name " $(echo -e '\xF0\x9F\x94\x8B') ${status_bat}% | $(echo -e '\uf026') ${status_vol} | $(echo -e '\u21ef') ${status_ssid} | $(echo -e '\u23F2') $(date +"%F %R") "
    sleep 10s    # Update time every 10 seconds
 done &
 
-# setup dual monitors if available
+# autostart section
 mon_count=$(xrandr --query | grep " connected" | cut -d" " -f1 | wc -l)
 if [[ "2" == $mon_count ]]
 then    
@@ -17,11 +17,11 @@ then
     xrandr --auto --output eDP-1 --mode 1920x1080 --right-of VGA-1 --pos 1920x1080+1920+0;
 fi
 
-# swap capslock and control
+# capslock
 setxkbmap -option ctrl:swapcaps
 
-# start audio server
+# audio
 start-pulseaudio-x11 &
 
-# Avoid issues with java apps
+# for java apps
 wmname LG3D

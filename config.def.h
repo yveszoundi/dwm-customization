@@ -5,7 +5,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus:size=15" };
+static const char *fonts[]          = { "Monospace:size=15" };
 //static const char dmenufont[]       = "-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*";
 static const char dmenufont[]       = "-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*";
 static const char normbordercolor[] = "#222222";
@@ -16,9 +16,9 @@ static const char selbgcolor[]      = "#eeeeee";
 static const char selfgcolor[]      = "#005577";
 
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { normfgcolor, normbordercolor, normbgcolor },
-	[SchemeSel]  = { selbgcolor, selfgcolor,  selbordercolor},
+	/*               fg           bg               border         */
+	[SchemeNorm] = { normfgcolor, normbordercolor, normbgcolor    },
+	[SchemeSel]  = { selbgcolor , selfgcolor     , selbordercolor },
 };
 
 
@@ -64,14 +64,13 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, \
+static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, \
 				  "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *lockcmd[]  = { "xlock", NULL };
-
-static const char *volmutecmd[]      = { "amixer", "-q", "set", "Master", "toggle", NULL };
-static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "5%+", NULL };
-static const char *voldncmd[] = { "amixer", "-q", "set", "Master", "5%-", NULL };
+static const char *termcmd[]          = { "st", NULL };
+static const char *lockcmd[]          = { "xlock", NULL };
+static const char *volmutecmd[]       = { "amixer", "-q", "set", "Master", "toggle", NULL };
+static const char *volupcmd[]         = { "amixer", "-q", "set", "Master", "5%+", NULL };
+static const char *voldncmd[]         = { "amixer", "-q", "set", "Master", "5%-", NULL };
 static const char *print_screen_cmd[] = { "gnome-screenshot", "-i", NULL };
 
 /* Multimedia keys - check keys values using 'xev' */
