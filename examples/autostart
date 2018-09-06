@@ -2,10 +2,11 @@
 
 # statusbar loop
 while true; do
-   status_ssid=`iwgetid -r`
-   status_vol=`amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }'`
-   status_bat=`cat /sys/class/power_supply/BAT0/capacity`
-   xsetroot -name " $(echo -e '\xF0\x9F\x94\x8B') ${status_bat}% | $(echo -e '\uf026') ${status_vol} | $(echo -e '\u21ef') ${status_ssid} | $(echo -e '\u23F2') $(date +"%F %R") "
+   status_ssid="$(echo -e '\u2350') $(iwgetid -r)"
+   status_vol="$(echo -e '\uf026') $(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')"
+   status_bat="$(echo -e '\uf242') $(cat /sys/class/power_supply/BAT0/capacity)%"
+   status_date="$(echo -e '\u23F0') $(date +"%F %R")"
+   xsetroot -name " ${status_bat} | ${status_vol} | ${status_ssid} | ${status_date} "
    sleep 10s    # Update time every 10 seconds
 done &
 
