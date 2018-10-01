@@ -5,8 +5,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Monospace:size=15" };
-//static const char dmenufont[]       = "-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*";
+static const char *fonts[]          = { "Terminus:style=Regular:size=13" };
 static const char dmenufont[]       = "-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*";
 static const char normbordercolor[] = "#222222";
 static const char normbgcolor[]     = "#444444";
@@ -71,7 +70,8 @@ static const char *lockcmd[]          = { "xlock", NULL };
 static const char *volmutecmd[]       = { "amixer", "-q", "set", "Master", "toggle", NULL };
 static const char *volupcmd[]         = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]         = { "amixer", "-q", "set", "Master", "5%-", NULL };
-static const char *print_screen_cmd[] = { "gnome-screenshot", "-i", NULL };
+//static const char *screenshot[] = { "gnome-screenshot", "-i", NULL };
+static const char *print_screen_cmd[] = { "import", "~/Pictures/desktop/`date'+%Y%m%d-%H%M%S'`.jpg", NULL}
 
 /* Multimedia keys - check keys values using 'xev' */
 #define XF86AudioMute			0x1008ff12
