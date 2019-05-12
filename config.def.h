@@ -71,7 +71,7 @@ static const char *volmutecmd[]       = { "amixer", "-q", "set", "Master", "togg
 static const char *volupcmd[]         = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]         = { "amixer", "-q", "set", "Master", "5%-", NULL };
 //static const char *screenshot[] = { "gnome-screenshot", "-i", NULL };
-static const char *print_screen_cmd[] = { "import", "~/Pictures/desktop/`date'+%Y%m%d-%H%M%S'`.jpg", NULL}
+static const char *print_screen_cmd[] = { "import", "~/Pictures/desktop/`date'+%Y%m%d-%H%M%S'`.jpg", NULL};
 
 /* Multimedia keys - check keys values using 'xev' */
 #define XF86AudioMute			0x1008ff12
