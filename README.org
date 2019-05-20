@@ -24,7 +24,16 @@ Afterwards enter the following command to build and install dwm (if necessary as
 #+END_SRC
 
 * Running dwm
-Add the following line to your .xinitrc to start dwm using startx:
+** Login manager
+Unless using the command line to start a graphical user interface, copy the =dwm.desktop= file to =/usr/share/xessions=.
+
+#+BEGIN_SRC sh
+  sudo cp dwm.desktop /usr/share/xsessions
+  sudo update-desktop-database
+#+END_SRC
+
+** xinitrc
+Add the following line to your =.xinitrc= to start =dwm= via =startx=:
 
 #+BEGIN_SRC sh
   exec dwm
