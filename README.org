@@ -11,19 +11,20 @@ This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.
 
 * Requirements
 
-In order to build dwm you need the Xlib header files.
+In order to build =dwm= you need the Xlib header files.
 
 * Installation
 
-dwm is installed into the =/usr/local= namespace by default.
+=dwm= is installed into the =/usr/local= namespace by default.
 
-Afterwards enter the following command to build and install dwm (if necessary as root):
+Afterwards enter the following command to build and install =dwm= (if necessary as root):
 
 #+BEGIN_SRC sh
   make clean install
 #+END_SRC
 
 * Running dwm
+
 ** Login manager
 Unless using the command line to start a graphical user interface, copy the =dwm.desktop= file to =/usr/share/xessions=.
 
