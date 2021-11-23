@@ -1,6 +1,6 @@
 #+TITLE: DWM window manager customizations
 
-This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] a la [[https://stumpwm.github.io/][stumpwm]] or [[https://www.nongnu.org/ratpoison/][ratpoison]].
+This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] a la [[https://stumpwm.github.io/][stumpwm]] or [[https://www.nongnu.org/ratpoison/][ratpoison]] (CONTROL-t prefix).
 
 * Customizations
 
@@ -11,7 +11,8 @@ This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.
 
 * Requirements
 
-In order to build =dwm= you need the Xlib header files.
+- In order to build =dwm= you need the Xlib header files.
+- I added [[https://github.com/tsoding/boomer][boomer]] as screen magnifier and it is bound to =C-t z= by default. Please consult the =config.def.h= file for default programs.
 
 * Installation
 

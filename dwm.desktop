@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=XSession
-Exec=dbus-run-session dwm
+Exec=dwm
 TryExec=dwm
 Name=Dwm
 Comment=Dwm window manager

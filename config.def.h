@@ -66,11 +66,11 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, \
 				  "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]          = { "st", NULL };
-static const char *lockcmd[]          = { "xlock", NULL };
+static const char *zoomcmd[]          = { "boomer", NULL };
+static const char *lockcmd[]          = { "slock", NULL };
 static const char *volmutecmd[]       = { "amixer", "-q", "set", "Master", "toggle", NULL };
 static const char *volupcmd[]         = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]         = { "amixer", "-q", "set", "Master", "5%-", NULL };
-//static const char *screenshot[] = { "gnome-screenshot", "-i", NULL };
 static const char *print_screen_cmd[] = { "import", "~/Pictures/desktop/`date'+%Y%m%d-%H%M%S'`.jpg", NULL};
 
 /* Multimedia keys - check keys values using 'xev' */
@@ -96,6 +96,7 @@ static Key keys[] = {
 	{ None,          XK_v,                   view,           {0} },
 	{ None,          XK_k,                   killclient,     {0} },
    	{ None,          XK_l,                   spawn,          {.v = lockcmd } },
+   	{ None,          XK_z,                   spawn,          {.v = zoomcmd } },
     { 0,             XK_Print,               spawn,          {.v = print_screen_cmd } },
 	{ None,          XK_t,                   setlayout,      {.v = &layouts[0]} },
 	{ None,          XK_f,                   setlayout,      {.v = &layouts[1]} },
