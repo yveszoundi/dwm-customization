@@ -1,27 +1,48 @@
 #+TITLE: DWM window manager customizations
 
-This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] a la [[https://stumpwm.github.io/][stumpwm]] or [[https://www.nongnu.org/ratpoison/][ratpoison]] (CONTROL-t prefix).
+This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] "a la" [[https://stumpwm.github.io/][stumpwm]] or [[https://www.nongnu.org/ratpoison/][ratpoison]] (CONTROL-t prefix).
 
 * Customizations
 
-- [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] (baseline git tree prior additional patches)
-- [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]
-- [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]
-- [[https://dwm.suckless.org/patches/autostart/][autostart]] variation with a non-blocking script at =$HOME/.config/dwm/autostart=
+|--------------------------+------------------------------------------------------------------------------------------------------------|
+| Patch                    | Description                                                                                                |
+|--------------------------+------------------------------------------------------------------------------------------------------------|
+| [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] | Baseline git tree prior additional patches.                                                                |
+| [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]                 | Compatibility with programs requesting workspace information.                                              |
+| [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]                     | Warp the mouse cursor to the center of the focused window.                                                 |
+| [[https://dwm.suckless.org/patches/autostart/][autostart]]                | Variation with a non-blocking script at =$HOME/.config/dwm/autostart=. Please check the =examples= folder. |
+| [[https://dwm.suckless.org/patches/xrdb/][xrdb]]                     | Please check the =examples= folder for a sample =.Xresources= configuration.                               |
+|--------------------------+------------------------------------------------------------------------------------------------------------|
+
 
 * Requirements
 
-- In order to build =dwm= you need the Xlib header files.
-- I added [[https://github.com/tsoding/boomer][boomer]] as screen magnifier and it is bound to =C-t z= by default. Please consult the =config.def.h= file for default programs.
+In order to build =dwm= you need the Xlib header files.
+
+#+begin_src sh
+sudo apt-get install libxinerama-dev libfontconfig1-dev libx11-dev libxft-dev libxinerama-dev build-essential
+#+end_src
+
+Additionally the following software dependencies are referenced in =config.def.h=:
+
+|-------------+--------------------------------------------------------|
+| Software    | Description                                            |
+|-------------+--------------------------------------------------------|
+| [[https://github.com/tsoding/boomer][boomer]]      | Convenient screen magnifier for tiling window managers |
+| [[https://tools.suckless.org/slock][slock]]       | Simple X display locker                                |
+| [[https://linux.die.net/man/1/amixer][amixer]]      | Mixer for ALSA soundcard driver                        |
+| [[https://st.suckless.org/][st]]          | Simple terminal implementation for X                   |
+| [[https://tools.suckless.org/dmenu/][dmenu]]       | Dynamic menu for X, originally designed for dwm        |
+| [[https://imagemagick.org/index.php][imagemagick]] | Create, modify, convert images, take screenshots       |
+|-------------+--------------------------------------------------------|
 
 * Installation
 
-=dwm= is installed into the =/usr/local= namespace by default.
-
-Afterwards enter the following command to build and install =dwm= (if necessary as root):
+You can build and copy the resulting =dwm= binary at the location of your choice (such as in =/usr/local/bin=).
 
 #+BEGIN_SRC sh
-  make clean install
+  make
+  sudo cp dwm /usr/local/bin
 #+END_SRC
 
 * Running dwm

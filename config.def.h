@@ -7,12 +7,12 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Terminus:style=Regular:size=13" };
 static const char dmenufont[]       = "-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*";
-static const char normbordercolor[] = "#222222";
-static const char normbgcolor[]     = "#444444";
-static const char normfgcolor[]     = "#bbbbbb";
-static const char selbordercolor[]  = "#005577";
-static const char selbgcolor[]      = "#eeeeee";
-static const char selfgcolor[]      = "#005577";
+static char normbordercolor[] = "#444444";
+static char normbgcolor[]     = "#222222";
+static char normfgcolor[]     = "#bbbbbb";
+static char selbordercolor[]  = "#005577";
+static char selbgcolor[]      = "#005577";
+static char selfgcolor[]      = "#eeeeee";
 
 static const char *colors[][3]      = {
 	/*               fg           bg               border         */
@@ -95,9 +95,10 @@ static Key keys[] = {
 	{ None,          XK_grave,               zoom,           {0} },
 	{ None,          XK_v,                   view,           {0} },
 	{ None,          XK_k,                   killclient,     {0} },
-   	{ None,          XK_l,                   spawn,          {.v = lockcmd } },
-   	{ None,          XK_z,                   spawn,          {.v = zoomcmd } },
-    { 0,             XK_Print,               spawn,          {.v = print_screen_cmd } },
+ 	{ None,          XK_l,                   spawn,          {.v = lockcmd } },
+ 	{ None,          XK_z,                   spawn,          {.v = zoomcmd } },
+ 	{ None,          XK_r,                   xrdb,           {.v = NULL } },
+  { 0,             XK_Print,               spawn,          {.v = print_screen_cmd } },
 	{ None,          XK_t,                   setlayout,      {.v = &layouts[0]} },
 	{ None,          XK_f,                   setlayout,      {.v = &layouts[1]} },
 	{ None,          XK_m,                   setlayout,      {.v = &layouts[2]} },
