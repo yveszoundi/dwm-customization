@@ -34,6 +34,7 @@ Additionally the following software dependencies are referenced in =config.def.h
 | [[https://st.suckless.org/][st]]          | Simple terminal implementation for X                   |
 | [[https://tools.suckless.org/dmenu/][dmenu]]       | Dynamic menu for X, originally designed for dwm        |
 | [[https://imagemagick.org/index.php][imagemagick]] | Create, modify, convert images, take screenshots       |
+| [[https://linux.die.net/man/1/xclip][xclip]]       | Command line interface to X selections (clipboard)     |
 |-------------+--------------------------------------------------------|
 
 * Installation

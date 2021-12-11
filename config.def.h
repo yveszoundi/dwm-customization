@@ -71,7 +71,7 @@ static const char *lockcmd[]          = { "slock", NULL };
 static const char *volmutecmd[]       = { "amixer", "-q", "set", "Master", "toggle", NULL };
 static const char *volupcmd[]         = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]         = { "amixer", "-q", "set", "Master", "5%-", NULL };
-static const char *print_screen_cmd[] = { "import", "~/Pictures/desktop/`date'+%Y%m%d-%H%M%S'`.jpg", NULL};
+static const char *print_screen_cmd[] = { "/bin/bash", "-c", "img=$HOME/Pictures/`date +%Y_%m_%d_%H_%M_%S`.png; import $img; cat $img | xclip -selection clipboard -t image/png", NULL};
 
 /* Multimedia keys - check keys values using 'xev' */
 #define XF86AudioMute			0x1008ff12
