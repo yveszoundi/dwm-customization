@@ -44,7 +44,7 @@
 
 #include "drw.h"
 #include "util.h"
-
+#include <wordexp.h>
 
 /* macros */
 #define BUTTONMASK              (ButtonPressMask|ButtonReleaseMask)
@@ -213,6 +213,7 @@ static void resizeclient(Client *c, int x, int y, int w, int h);
 static void resizemouse(const Arg *arg);
 static void restack(Monitor *m);
 static void run(void);
+static char* findAutostartFile(void);
 static void runAutostart(void);
 static void scan(void);
 static int sendevent(Client *c, Atom proto);
@@ -1470,11 +1471,39 @@ run(void)
 			handler[ev.type](&ev); /* call handler */
 }
 
-void
-runAutostart(void) {
-	system("cd ~/.config/dwm; ./autostart");
+char*
+findAutostartFile(void) {
+  const char *config_paths[] = {
+    "$XDG_CONFIG_HOME/dwm/autostart"
+  };
+  char *config_home=getenv("XDG_CONFIG_HOME");
+  if (!config_home || config_home[0] == '\0') {
+    config_paths[0] = "$HOME/.config/dwm/autostart";
+  }
+
+  wordexp_t p;
+  for (size_t i = 0; i < sizeof(config_paths) / sizeof(char *); ++i) {
+    if (wordexp(config_paths[i], &p, 0) == 0) {
+      char *path = strdup(p.we_wordv[0]);
+      wordfree(&p);
+      if (path && access(path, X_OK) == 0) {
+        return path;
+      }
+      free(path);
+    }
+  }
+
+  return NULL;
 }
 
+void
+runAutostart(void) {
+  char* autostart_file = findAutostartFile();
+
+  if (autostart_file != NULL) {
+    system(autostart_file);
+  }
+}
 
 void
 scan(void)
