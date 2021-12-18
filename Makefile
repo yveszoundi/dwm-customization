@@ -2,7 +2,7 @@
 # See LICENSE file for copyright and license details.
 
 include config.mk
-
+-include config.mk.additional
 SRC = drw.c dwm.c util.c
 OBJ = ${SRC:.c=.o}
 
@@ -13,6 +13,9 @@ options:
 	@echo "CFLAGS   = ${CFLAGS}"
 	@echo "LDFLAGS  = ${LDFLAGS}"
 	@echo "CC       = ${CC}"
+	@echo "UNAME    = ${UNAME}"
+	cp config.mk."${UNAME}" config.mk.additional
+	test -f config.mk.additional || cp config.mk.Linux config.mk.additional
 
 .c.o:
 	${CC} -c ${CFLAGS} $<

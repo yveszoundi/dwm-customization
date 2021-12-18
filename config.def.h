@@ -7,12 +7,12 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Terminus:style=Regular:size=13" };
 static const char dmenufont[]       = "-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*";
-static char normbordercolor[] = "#444444";
-static char normbgcolor[]     = "#222222";
-static char normfgcolor[]     = "#bbbbbb";
-static char selbordercolor[]  = "#005577";
-static char selbgcolor[]      = "#005577";
-static char selfgcolor[]      = "#eeeeee";
+static const char normbordercolor[] = "#222222";
+static const char normbgcolor[]     = "#444444";
+static const char normfgcolor[]     = "#bbbbbb";
+static const char selbordercolor[]  = "#005577";
+static const char selbgcolor[]      = "#eeeeee";
+static const char selfgcolor[]      = "#005577";
 
 static const char *colors[][3]      = {
 	/*               fg           bg               border         */
@@ -66,12 +66,12 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, \
 				  "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]          = { "st", NULL };
-static const char *zoomcmd[]          = { "boomer", NULL };
-static const char *lockcmd[]          = { "slock", NULL };
+static const char *lockcmd[]          = { "xlock", NULL };
 static const char *volmutecmd[]       = { "amixer", "-q", "set", "Master", "toggle", NULL };
 static const char *volupcmd[]         = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]         = { "amixer", "-q", "set", "Master", "5%-", NULL };
-static const char *print_screen_cmd[] = { "/bin/bash", "-c", "img=$HOME/Pictures/`date +%Y_%m_%d_%H_%M_%S`.png; import $img; cat $img | xclip -selection clipboard -t image/png", NULL};
+//static const char *screenshot[] = { "gnome-screenshot", "-i", NULL };
+static const char *print_screen_cmd[] = { "import", "~/Pictures/desktop/`date'+%Y%m%d-%H%M%S'`.jpg", NULL};
 
 /* Multimedia keys - check keys values using 'xev' */
 #define XF86AudioMute			0x1008ff12
@@ -95,10 +95,8 @@ static Key keys[] = {
 	{ None,          XK_grave,               zoom,           {0} },
 	{ None,          XK_v,                   view,           {0} },
 	{ None,          XK_k,                   killclient,     {0} },
- 	{ None,          XK_l,                   spawn,          {.v = lockcmd } },
- 	{ None,          XK_z,                   spawn,          {.v = zoomcmd } },
- 	{ None,          XK_r,                   xrdb,           {.v = NULL } },
-  { 0,             XK_Print,               spawn,          {.v = print_screen_cmd } },
+   	{ None,          XK_l,                   spawn,          {.v = lockcmd } },
+    { 0,             XK_Print,               spawn,          {.v = print_screen_cmd } },
 	{ None,          XK_t,                   setlayout,      {.v = &layouts[0]} },
 	{ None,          XK_f,                   setlayout,      {.v = &layouts[1]} },
 	{ None,          XK_m,                   setlayout,      {.v = &layouts[2]} },
