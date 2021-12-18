@@ -17,13 +17,15 @@ This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.
 
 * Requirements
 
-In order to build =dwm= you need the Xlib header files.
+In order to build =dwm= you need make, a C compiler and some Xlib header *dev* files (libXinerama, libXft).
+
+Here's an example for a Debian based distribution, package names are often relatively similar for other distributions.
 
 #+begin_src sh
 sudo apt-get install libxinerama-dev libfontconfig1-dev libx11-dev libxft-dev libxinerama-dev build-essential
 #+end_src
 
-Additionally the following software dependencies are referenced in =config.def.h=:
+Additionally, please note that the following software dependencies are referenced in =config.def.h=:
 
 |-------------+--------------------------------------------------------|
 | Software    | Description                                            |
@@ -39,28 +41,41 @@ Additionally the following software dependencies are referenced in =config.def.h
 
 * Installation
 
+** Linux
 You can build and copy the resulting =dwm= binary at the location of your choice (such as in =/usr/local/bin=).
 
 #+BEGIN_SRC sh
-  make
-  sudo cp dwm /usr/local/bin
+  make && sudo cp dwm /usr/local/bin
 #+END_SRC
+
+** OpenBSD
+
+If you're using OpenBSD, first overwrite the default =config.mk= with =config.mk.OpenBSD= as follow.
+
+#+begin_src sh
+  cp config.mk.OpenBSD config.mk
+  make && su -c 'cp dwm /usr/local/bin'
+#+end_src
 
 * Running dwm
 
-** Login manager
-Unless using the command line to start a graphical user interface, copy the =dwm.desktop= file to =/usr/share/xessions=.
+** Display manager login
+
+If using a Login Manager such as LightDM, copy the =dwm.desktop= file to =/usr/share/xessions=.
 
 #+BEGIN_SRC sh
   sudo cp dwm.desktop /usr/share/xsessions
   sudo update-desktop-database
 #+END_SRC
 
-** xinitrc
-Add the following line to your =.xinitrc= to start =dwm= via =startx=:
+For other Display Manager such as XDM, or for the console, it's just a matter of fiddling with couple of files accordingly (=.xinitrc=, =.xsession=, =.xsessionrc=, etc.).
+
+** Console login
+
+Jump to a TTY (terminal login) and type:
 
 #+BEGIN_SRC sh
-  exec dwm
+  startx /usr/local/bin/dwm
 #+END_SRC
 
 * Screenshot

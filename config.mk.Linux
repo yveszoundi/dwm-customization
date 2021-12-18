@@ -1,3 +1,19 @@
+# dwm version
+VERSION = 6.1
+
+# Customize below to fit your system
+
+# paths
+PREFIX = /usr/local
+MANPREFIX = ${PREFIX}/share/man
+
+# Xinerama, comment if you don't want it
+XINERAMALIBS  = -lXinerama
+XINERAMAFLAGS = -DXINERAMA
+
+# freetype
+FREETYPELIBS = -lfontconfig -lXft
+
 # includes and libs
 X11INC = /usr/include/X11
 X11LIB = /usr/lib/X11

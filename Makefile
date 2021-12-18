@@ -1,9 +1,8 @@
 # dwm - dynamic window manager
 # See LICENSE file for copyright and license details.
 
-data_created:sh = cp config.mk.`uname` config.mk.dynamic
 include config.mk
-include config.mk.dynamic
+
 SRC = drw.c dwm.c util.c
 OBJ = ${SRC:.c=.o}
 
@@ -28,7 +27,6 @@ dwm: ${OBJ}
 
 clean:
 	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz config.h
-	echo > config.mk.dynamic
 
 dist: clean
 	mkdir -p dwm-${VERSION}
