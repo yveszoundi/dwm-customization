@@ -54,7 +54,7 @@ If you're using OpenBSD, first overwrite the default =config.mk= with =config.mk
 
 #+begin_src sh
   cp config.mk.OpenBSD config.mk
-  make && su -c 'cp dwm /usr/local/bin'
+  make && su root -c 'cp dwm /usr/local/bin'
 #+end_src
 
 * Running dwm
