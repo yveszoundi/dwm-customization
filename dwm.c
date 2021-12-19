@@ -1499,6 +1499,7 @@ runAutostart(void) {
         if (stat(autostart_file, &sb) == 0 && sb.st_mode & S_IXUSR) {
           fprintf(stdout, "Running the dwm autostart file '%s'.", autostart_file);
           system(autostart_file);
+          break;
         }
         else {
           fprintf(stderr, "Please make the dwm autostart file '%s' executable with by running 'chmod +x %s'.", autostart_file, autostart_file);

@@ -2,17 +2,19 @@
 
 This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] "a la" [[https://stumpwm.github.io/][stumpwm]] or [[https://www.nongnu.org/ratpoison/][ratpoison]] (CONTROL-t prefix).
 
-* Customizations
+Some of the commands to follow assume that you have [[https://en.wikipedia.org/wiki/Sudo][sudo]] setup. You can replace that with [[https://en.wikipedia.org/wiki/Su_(Unix)][su]] or [[https://en.wikipedia.org/wiki/Doas][doas]] accordingly to your configuration.
 
-|--------------------------+------------------------------------------------------------------------------------------------------------|
-| Patch                    | Description                                                                                                |
-|--------------------------+------------------------------------------------------------------------------------------------------------|
-| [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] | Baseline git tree prior additional patches.                                                                |
-| [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]                 | Compatibility with programs requesting workspace information.                                              |
-| [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]                     | Warp the mouse cursor to the center of the focused window.                                                 |
-| [[https://dwm.suckless.org/patches/autostart/][autostart]]                | Variation with a non-blocking script at =$HOME/.config/dwm/autostart=. Please check the =examples= folder. |
-| [[https://dwm.suckless.org/patches/xrdb/][xrdb]]                     | Please check the =examples= folder for a sample =.Xresources= configuration.                               |
-|--------------------------+------------------------------------------------------------------------------------------------------------|
+* Customization
+
+|--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Patch                    | Description                                                                                                                                                                                                                                 |
+|--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] | Baseline git tree prior additional patches.                                                                                                                                                                                                 |
+| [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]                 | Compatibility with programs requesting workspace information.                                                                                                                                                                               |
+| [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]                     | Move automatically the mouse cursor to the focused window.                                                                                                                                                                                  |
+| [[https://dwm.suckless.org/patches/autostart/][autostart]]                | This is a custom variation of the original patch. If a startup script is found at =$HOME/.config/dwm/autostart= or =$XDG_CONFIG_HOME/dwm/autostart= and *only if* the file is executable, it'll be run. Please check the =examples= folder. |
+| [[https://dwm.suckless.org/patches/xrdb/][xrdb]]                     | Please check the =examples= folder for a sample =.Xresources= configuration.                                                                                                                                                                |
+|--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
 * Requirements
@@ -25,7 +27,7 @@ Here's an example for a Debian based distribution, package names are often relat
 sudo apt-get install libxinerama-dev libfontconfig1-dev libx11-dev libxft-dev libxinerama-dev build-essential
 #+end_src
 
-Additionally, please note that the following software dependencies are referenced in =config.def.h=:
+Additionally, please note that the following software dependencies are referenced in =config.def.h=.
 
 |-------------+--------------------------------------------------------|
 | Software    | Description                                            |
@@ -41,34 +43,25 @@ Additionally, please note that the following software dependencies are reference
 
 * Installation
 
-** Linux
 You can build and copy the resulting =dwm= binary at the location of your choice (such as in =/usr/local/bin=).
+Assuming that you have the required software and libraries installed, the compilation should be OK for Linux, OpenBSD and FreeBSD (*untested* =config.mk.FreeBSD= file).
 
 #+BEGIN_SRC sh
   make && sudo cp dwm /usr/local/bin
 #+END_SRC
 
-** OpenBSD
-
-If you're using OpenBSD, first overwrite the default =config.mk= with =config.mk.OpenBSD= as follow.
-
-#+begin_src sh
-  cp config.mk.OpenBSD config.mk
-  make && su root -c 'cp dwm /usr/local/bin'
-#+end_src
-
 * Running dwm
 
 ** Display manager login
 
-If using a Login Manager such as LightDM, copy the =dwm.desktop= file to =/usr/share/xessions=.
+If using a [[https://wiki.archlinux.org/title/Display_manager][display manager]] such as [[https://wiki.archlinux.org/title/LightDM][LightDM]], copy the =dwm.desktop= file to =/usr/share/xessions=.
 
 #+BEGIN_SRC sh
   sudo cp dwm.desktop /usr/share/xsessions
   sudo update-desktop-database
 #+END_SRC
 
-For other Display Manager such as XDM, or for the console, it's just a matter of fiddling with couple of files accordingly (=.xinitrc=, =.xsession=, =.xsessionrc=, etc.).
+For other Display Manager such as [[https://wiki.archlinux.org/title/XDM][XDM]], or for the console, it's just a matter of fiddling with couple of files accordingly (=.xinitrc=, =.xsession=, =.xsessionrc=, etc.).
 
 ** Console login
 
