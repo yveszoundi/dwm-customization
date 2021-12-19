@@ -6,6 +6,10 @@ VERSION = 6.1
 # paths
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
+
+# compiler and linker
+CC = cc
+
 UNAME != uname
 
 include config.mk.${UNAME}
