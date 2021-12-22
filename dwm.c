@@ -29,6 +29,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <stdbool.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <X11/cursorfont.h>
@@ -1484,7 +1485,10 @@ runAutostart(void) {
     "/.config/dwm/autostart"
   };
 
-  for (size_t i = 0; i < sizeof(prefix_paths) / sizeof(char *); ++i) {
+  
+  bool found = false;
+
+  for (size_t i = 0; !found && i < sizeof(prefix_paths) / sizeof(char *); ++i) {
     char *str;
     char *p = getenv(prefix_paths[i]);
 
@@ -1497,17 +1501,16 @@ runAutostart(void) {
       if (access(autostart_file, F_OK) == 0) {
         struct stat sb;
         if (stat(autostart_file, &sb) == 0 && sb.st_mode & S_IXUSR) {
-          fprintf(stdout, "Running the dwm autostart file '%s'.", autostart_file);
+          fprintf(stdout, "Running the dwm autostart file '%s'.\n", autostart_file);
           system(autostart_file);
-          break;
+          found = true;
         }
         else {
-          fprintf(stderr, "Please make the dwm autostart file '%s' executable with by running 'chmod +x %s'.", autostart_file, autostart_file);
+          fprintf(stderr, "Please make the dwm autostart file '%s' executable with by running 'chmod +x %s'.\n", autostart_file, autostart_file);
         }
       }
 
-      if (str != NULL)
-        free(str);
+      if (str != NULL) free(str);
     }
   }
 }

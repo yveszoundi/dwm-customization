@@ -1,50 +1,43 @@
 #+TITLE: DWM window manager customizations
 
-This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] "a la" [[https://stumpwm.github.io/][stumpwm]] or [[https://www.nongnu.org/ratpoison/][ratpoison]] (CONTROL-t prefix).
+This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://www.gnu.org/software/emacs/][Emacs-like]] or [[https://www.nongnu.org/ratpoison/][Ratpoison]] like keybindings (default prefix set to =Ctrl-t=): please refer to the =config.def.h= file.
 
 Some of the commands to follow assume that you have [[https://en.wikipedia.org/wiki/Sudo][sudo]] setup. You can replace that with [[https://en.wikipedia.org/wiki/Su_(Unix)][su]] or [[https://en.wikipedia.org/wiki/Doas][doas]] accordingly to your configuration.
 
 * Customization
 
-|--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Patch                    | Description                                                                                                                                                                                                                                 |
-|--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] | Baseline git tree prior additional patches.                                                                                                                                                                                                 |
-| [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]                 | Compatibility with programs requesting workspace information.                                                                                                                                                                               |
-| [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]                     | Move automatically the mouse cursor to the focused window.                                                                                                                                                                                  |
-| [[https://dwm.suckless.org/patches/autostart/][autostart]]                | This is a custom variation of the original patch. If a startup script is found at =$HOME/.config/dwm/autostart= or =$XDG_CONFIG_HOME/dwm/autostart= and *only if* the file is executable, it'll be run. Please check the =examples= folder. |
-| [[https://dwm.suckless.org/patches/xrdb/][xrdb]]                     | Please check the =examples= folder for a sample =.Xresources= configuration.                                                                                                                                                                |
-|--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Patch                    | Description                                                                                                                                         |
+|--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| [[https://git.muteddisk.com/?p=dwm.git;a=tree][prefix style keybindings]] | Baseline git tree prior additional patches.                                                                                                         |
+| [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]                 | Compatibility with programs requesting workspace information.                                                                                       |
+| [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]                     | Move automatically the mouse cursor to the focused window.                                                                                          |
+| [[https://dwm.suckless.org/patches/autostart/][autostart]]                | If a startup *executable* script is found at =$HOME/.config/dwm/autostart= or =$XDG_CONFIG_HOME/dwm/autostart=. Please check the =examples= folder. |
+| [[https://dwm.suckless.org/patches/xrdb/][xrdb]]                     | Please check the =examples= folder for a sample =.Xresources= configuration.                                                                        |
+|--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
 * Requirements
 
-In order to build =dwm= you need make, a C compiler and some Xlib header *dev* files (libXinerama, libXft).
-
-Here's an example for a Debian based distribution, package names are often relatively similar for other distributions.
-
-#+begin_src sh
-sudo apt-get install libxinerama-dev libfontconfig1-dev libx11-dev libxft-dev libxinerama-dev build-essential
-#+end_src
+In order to build =dwm= you need make, a C compiler and some Xlib header *dev* files (Xinerama and freetype2 dev libraries, a C compiler and make).
 
 Additionally, please note that the following software dependencies are referenced in =config.def.h=.
 
-|-------------+--------------------------------------------------------|
-| Software    | Description                                            |
-|-------------+--------------------------------------------------------|
-| [[https://github.com/tsoding/boomer][boomer]]      | Convenient screen magnifier for tiling window managers |
-| [[https://tools.suckless.org/slock][slock]]       | Simple X display locker                                |
-| [[https://linux.die.net/man/1/amixer][amixer]]      | Mixer for ALSA soundcard driver                        |
-| [[https://st.suckless.org/][st]]          | Simple terminal implementation for X                   |
-| [[https://tools.suckless.org/dmenu/][dmenu]]       | Dynamic menu for X, originally designed for dwm        |
-| [[https://imagemagick.org/index.php][imagemagick]] | Create, modify, convert images, take screenshots       |
-| [[https://linux.die.net/man/1/xclip][xclip]]       | Command line interface to X selections (clipboard)     |
-|-------------+--------------------------------------------------------|
+|-------------+-----------------------------------|
+| Software    | Usage                             |
+|-------------+-----------------------------------|
+| [[https://github.com/tsoding/boomer][boomer]]      | Magnify the screen                |
+| [[https://tools.suckless.org/slock][slock]]       | Lock the screen                   |
+| [[https://linux.die.net/man/1/amixer][amixer]]      | Adjust the volume                 |
+| [[https://st.suckless.org/][st]]          | Run a terminal                    |
+| [[https://tools.suckless.org/dmenu/][dmenu]]       | Launch applications               |
+| [[https://imagemagick.org/index.php][imagemagick]] | Take screenshots                  |
+| [[https://linux.die.net/man/1/xclip][xclip]]       | Copy screenshots to the clipboard |
+|-------------+-----------------------------------|
 
 * Installation
 
 You can build and copy the resulting =dwm= binary at the location of your choice (such as in =/usr/local/bin=).
-Assuming that you have the required software and libraries installed, the compilation should be OK for Linux, OpenBSD and FreeBSD (*untested* =config.mk.FreeBSD= file).
 
 #+BEGIN_SRC sh
   make && sudo cp dwm /usr/local/bin
@@ -52,24 +45,8 @@ Assuming that you have the required software and libraries installed, the compil
 
 * Running dwm
 
-** Display manager login
-
-If using a [[https://wiki.archlinux.org/title/Display_manager][display manager]] such as [[https://wiki.archlinux.org/title/LightDM][LightDM]], copy the =dwm.desktop= file to =/usr/share/xessions=.
-
-#+BEGIN_SRC sh
-  sudo cp dwm.desktop /usr/share/xsessions
-  sudo update-desktop-database
-#+END_SRC
-
-For other Display Manager such as [[https://wiki.archlinux.org/title/XDM][XDM]], or for the console, it's just a matter of fiddling with couple of files accordingly (=.xinitrc=, =.xsession=, =.xsessionrc=, etc.).
-
-** Console login
-
-Jump to a TTY (terminal login) and type:
-
-#+BEGIN_SRC sh
-  startx /usr/local/bin/dwm
-#+END_SRC
+- If using a [[https://wiki.archlinux.org/title/Display_manager][display manager]] such as [[https://wiki.archlinux.org/title/LightDM][LightDM]], copy the =dwm.desktop= file to =/usr/share/xessions=, for XDM you only need a =.xsession= file.
+- Alternatively in a TTY, run =startx /usr/local/bin/dwm=.
 
 * Screenshot
 
