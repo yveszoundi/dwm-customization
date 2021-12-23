@@ -2,8 +2,6 @@
 
 This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://www.gnu.org/software/emacs/][Emacs-like]] or [[https://www.nongnu.org/ratpoison/][Ratpoison]] like keybindings (default prefix set to =Ctrl-t=): please refer to the =config.def.h= file.
 
-Some of the commands to follow assume that you have [[https://en.wikipedia.org/wiki/Sudo][sudo]] setup. You can replace that with [[https://en.wikipedia.org/wiki/Su_(Unix)][su]] or [[https://en.wikipedia.org/wiki/Doas][doas]] accordingly to your configuration.
-
 * Customization
 
 |--------------------------+---------------------------------------------------------------|
@@ -17,9 +15,7 @@ Some of the commands to follow assume that you have [[https://en.wikipedia.org/w
 
 * Requirements
 
-In order to build =dwm= you need make, a C compiler and some Xlib header *dev* files (Xinerama and freetype2 dev libraries, a C compiler and make).
-
-Additionally, please note that the following software dependencies are referenced in =config.def.h=.
+In order to build =dwm= you need make, a C compiler and some Xlib header *dev* files (Xinerama and freetype2 dev libraries, a C compiler and make). Additionally, please note that the following software dependencies are referenced in =config.def.h=.
 
 |-------------+-----------------------------------|
 | Software    | Usage                             |
@@ -43,7 +39,8 @@ You can build and copy the resulting =dwm= binary at the location of your choice
 
 * Running dwm
 
-- If using a [[https://wiki.archlinux.org/title/Display_manager][display manager]] such as [[https://wiki.archlinux.org/title/LightDM][LightDM]], copy the =dwm.desktop= file to =/usr/share/xessions=, for XDM you only need a =.xsession= file.
+- If using a [[https://wiki.archlinux.org/title/Display_manager][display manager]] such as [[https://wiki.archlinux.org/title/LightDM][LightDM]], copy the =dwm.desktop= file to =/usr/share/xessions=.
+- For XDM you only need an executable =.xsession= file (=exec /usr/local/bin/dwm=).
 - Alternatively in a TTY, run =startx /usr/local/bin/dwm=.
 
 * Screenshot
