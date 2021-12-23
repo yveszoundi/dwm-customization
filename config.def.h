@@ -7,14 +7,14 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Terminus:style=Regular:size=11" };
 static const char dmenufont[]       = "-*-terminus-bold-r-*-*-11-*-*-*-*-*-*-*";
-static char normbordercolor[] = "#282c34";
-static char normbgcolor[]     = "#282c34";
-static char normfgcolor[]     = "#c8ccd4";
-static char selbordercolor[]  = "#be5046";
-static char selbgcolor[]      = "#3e4451";
-static char selfgcolor[]      = "#c8ccd4";
+static const char normbordercolor[] = "#282c34";
+static const char normbgcolor[]     = "#282c34";
+static const char normfgcolor[]     = "#c8ccd4";
+static const char selbordercolor[]  = "#be5046";
+static const char selbgcolor[]      = "#3e4451";
+static const char selfgcolor[]      = "#c8ccd4";
 
-static char *colors[][3]      = {
+static const char *colors[][3]      = {
 	/*               fg           bg               border         */
 	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor    },
 	[SchemeSel]  = { selfgcolor, selbgcolor     , selbordercolor },
@@ -97,7 +97,6 @@ static Key keys[] = {
 	{ None,          XK_k,                   killclient,     {0} },
  	{ None,          XK_l,                   spawn,          {.v = lockcmd } },
  	{ None,          XK_z,                   spawn,          {.v = zoomcmd } },
- 	{ None,          XK_r,                   xrdb,           {.v = NULL } },
   { 0,             XK_Print,               spawn,          {.v = print_screen_cmd } },
 	{ None,          XK_t,                   setlayout,      {.v = &layouts[0]} },
 	{ None,          XK_f,                   setlayout,      {.v = &layouts[1]} },

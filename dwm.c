@@ -29,7 +29,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <stdbool.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <X11/cursorfont.h>
@@ -37,7 +36,6 @@
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
-#include <X11/Xresource.h>
 #include <X11/Xutil.h>
 #ifdef XINERAMA
 #include <X11/extensions/Xinerama.h>
@@ -61,21 +59,7 @@
 #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
 #define TAGSLENGTH              (LENGTH(tags))
 #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
-#define XRDB_LOAD_COLOR(R,V)    if (XrmGetResource(xrdb, R, NULL, &type, &value) == True) { \
-                                  if (value.addr != NULL && strnlen(value.addr, 8) == 7 && value.addr[0] == '#') { \
-                                    int i = 1; \
-                                    for (; i <= 6; i++) { \
-                                      if (value.addr[i] < 48) break; \
-                                      if (value.addr[i] > 57 && value.addr[i] < 65) break; \
-                                      if (value.addr[i] > 70 && value.addr[i] < 97) break; \
-                                      if (value.addr[i] > 102) break; \
-                                    } \
-                                    if (i == 7) { \
-                                      strncpy(V, value.addr, 7); \
-                                      V[7] = '\0'; \
-                                    } \
-                                  } \
-                                }
+
 /* enums */
 enum { PrefixKey, CmdKey };
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
@@ -198,7 +182,6 @@ static void grabkeys(int keytype);
 static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
-static void loadxrdb(void);
 static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
@@ -215,7 +198,6 @@ static void resizeclient(Client *c, int x, int y, int w, int h);
 static void resizemouse(const Arg *arg);
 static void restack(Monitor *m);
 static void run(void);
-static void runAutostart(void);
 static void scan(void);
 static int sendevent(Client *c, Atom proto);
 static void sendmon(Client *c, Monitor *m);
@@ -261,7 +243,6 @@ static Monitor *wintomon(Window w);
 static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
-static void xrdb(const Arg *arg);
 static void zoom(const Arg *arg);
 
 /* variables */
@@ -1063,37 +1044,6 @@ killclient(const Arg *arg)
 }
 
 void
-loadxrdb()
-{
-  Display *display;
-  char *resm;
-  XrmDatabase xrdb;
-  char *type;
-  XrmValue value;
-
-  display = XOpenDisplay(NULL);
-
-  if (display != NULL) {
-    resm = XResourceManagerString(display);
-
-    if (resm != NULL) {
-      xrdb = XrmGetStringDatabase(resm);
-
-      if (xrdb != NULL) {
-        XRDB_LOAD_COLOR("dwm.normbordercolor", normbordercolor);
-        XRDB_LOAD_COLOR("dwm.normbgcolor", normbgcolor);
-        XRDB_LOAD_COLOR("dwm.normfgcolor", normfgcolor);
-        XRDB_LOAD_COLOR("dwm.selbordercolor", selbordercolor);
-        XRDB_LOAD_COLOR("dwm.selbgcolor", selbgcolor);
-        XRDB_LOAD_COLOR("dwm.selfgcolor", selfgcolor);
-      }
-    }
-  }
-
-  XCloseDisplay(display);
-}
-
-void
 manage(Window w, XWindowAttributes *wa)
 {
 	Client *c, *t = NULL;
@@ -1461,8 +1411,6 @@ run(void)
 	/* main event loop */
 	XSync(dpy, False);
     
-    runAutostart();
-    
     // Select primary monitor
     Arg a = {.i = 0};
     const Arg *primary_mon = &a;
@@ -1471,48 +1419,6 @@ run(void)
 	while (running && !XNextEvent(dpy, &ev))
 		if (handler[ev.type])
 			handler[ev.type](&ev); /* call handler */
-}
-
-void
-runAutostart(void) {
-  const char *prefix_paths[] = {
-    "XDG_CONFIG_HOME",
-    "HOME"
-  };
-
-  const char *suffix_paths[] = {
-    "/dwm/autostart",
-    "/.config/dwm/autostart"
-  };
-
-  
-  bool found = false;
-
-  for (size_t i = 0; !found && i < sizeof(prefix_paths) / sizeof(char *); ++i) {
-    char *str;
-    char *p = getenv(prefix_paths[i]);
-
-    if (p != NULL && p[0] != '\0') {
-      str = strdup(p);
-      size_t buf_size = strlen(str) + strlen(suffix_paths[i]) + 1;
-      char autostart_file[buf_size];
-      snprintf(autostart_file, sizeof(autostart_file), "%s%s", str, suffix_paths[i]);
-
-      if (access(autostart_file, F_OK) == 0) {
-        struct stat sb;
-        if (stat(autostart_file, &sb) == 0 && sb.st_mode & S_IXUSR) {
-          fprintf(stdout, "Running the dwm autostart file '%s'.\n", autostart_file);
-          system(autostart_file);
-          found = true;
-        }
-        else {
-          fprintf(stderr, "Please make the dwm autostart file '%s' executable with by running 'chmod +x %s'.\n", autostart_file, autostart_file);
-        }
-      }
-
-      if (str != NULL) free(str);
-    }
-  }
 }
 
 void
@@ -2320,19 +2226,6 @@ xerrorstart(Display *dpy, XErrorEvent *ee)
 }
 
 void
-xrdb(const Arg *arg)
-{
-  loadxrdb();
-  int i;
-
-  for (i = 0; i < LENGTH(colors); i++)
-    scheme[i] = drw_scm_create(drw, colors[i], 3);
-
-  focus(NULL);
-  arrange(NULL);
-}
-
-void
 zoom(const Arg *arg)
 {
 	Client *c = selmon->sel;
@@ -2358,8 +2251,6 @@ main(int argc, char *argv[])
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display");
 	checkotherwm();
-  XrmInitialize();
-	loadxrdb();
 	setup();
 #ifdef __OpenBSD__
 	if (pledge("stdio rpath proc exec", NULL) == -1)
