@@ -67,7 +67,7 @@ static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dm
 				  "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]          = { "st", NULL };
 static const char *rclip_copycmd[]    = { "/bin/sh", "-c", "clipboard-client --server-host 10.0.2.2 --command WRITE", NULL };
-static const char *rclip_pastecmd[]   = { "/bin/sh", "-c", "clipboard-client --server-host 10.0.2.2", NULL };
+static const char *rclip_pastecmd[]   = { "/bin/sh", "-c", "clipboard-client --server-host 10.0.2.2 --clipboard-program /usr/local/bin/xclip-helper", NULL };
 static const char *zoomcmd[]          = { "boomer", NULL };
 static const char *lockcmd[]          = { "slock", NULL };
 static const char *volmutecmd[]       = { "amixer", "-q", "set", "Master", "toggle", NULL };
