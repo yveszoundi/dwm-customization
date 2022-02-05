@@ -66,6 +66,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, \
 				  "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]          = { "st", NULL };
+static const char *rclip_copycmd[]    = { "clipboard-cli-copy", NULL };
+static const char *rclip_pastecmd[]   = { "clipboard-cli-paste", NULL };
 static const char *zoomcmd[]          = { "boomer", NULL };
 static const char *lockcmd[]          = { "slock", NULL };
 static const char *volmutecmd[]       = { "amixer", "-q", "set", "Master", "toggle", NULL };
@@ -85,6 +87,8 @@ static Key keys[] = {
     { 0,             XF86AudioLowerVolume,   spawn,          {.v = voldncmd } },
 	{ None,          XK_Return,              spawn,          {.v = dmenucmd } },
 	{ None,          XK_c,                   spawn,          {.v = termcmd } },
+	{ ShiftMask,     XK_c,                   spawn,          {.v = rclip_copycmd } },
+	{ ShiftMask,     XK_v,                   spawn,          {.v = rclip_pastecmd } },    
 	{ None,          XK_b,                   togglebar,      {0} },
 	{ None,          XK_n,                   focusstack,     {.i = +1 } },
 	{ None,          XK_p,                   focusstack,     {.i = -1 } },

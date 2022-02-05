@@ -17,17 +17,18 @@ This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://www.
 
 In order to build =dwm= you need make, a C compiler and some Xlib header *dev* files (Xinerama and freetype2 dev libraries, a C compiler and make). Additionally, please note that the following software dependencies are referenced in =config.def.h=.
 
-|-------------+-----------------------------------|
-| Software    | Usage                             |
-|-------------+-----------------------------------|
-| [[https://github.com/tsoding/boomer][boomer]]      | Magnify the screen                |
-| [[https://tools.suckless.org/slock][slock]]       | Lock the screen                   |
-| [[https://linux.die.net/man/1/amixer][amixer]]      | Adjust the volume                 |
-| [[https://st.suckless.org/][st]]          | Run a terminal                    |
-| [[https://tools.suckless.org/dmenu/][dmenu]]       | Launch applications               |
-| [[https://imagemagick.org/index.php][imagemagick]] | Take screenshots                  |
-| [[https://linux.die.net/man/1/xclip][xclip]]       | Copy screenshots to the clipboard |
-|-------------+-----------------------------------|
+|--------------------+-----------------------------------------------------------------------------|
+| Software           | Usage                                                                       |
+|--------------------+-----------------------------------------------------------------------------|
+| [[https://github.com/tsoding/boomer][boomer]]             | Magnify the screen                                                          |
+| [[https://tools.suckless.org/slock][slock]]              | Lock the screen                                                             |
+| [[https://linux.die.net/man/1/amixer][amixer]]             | Adjust the volume                                                           |
+| [[https://st.suckless.org/][st]]                 | Run a terminal                                                              |
+| [[https://tools.suckless.org/dmenu/][dmenu]]              | Launch applications                                                         |
+| [[https://imagemagick.org/index.php][imagemagick]]        | Take screenshots                                                            |
+| [[https://linux.die.net/man/1/xclip][xclip]]              | Copy screenshots to the clipboard                                           |
+| [[https://github.com/yveszoundi/clipboard-remoting][clipboard-remoting]] | Shared clipboard among QEMU vms, optimized flow for tiling window managers  |
+|--------------------+-----------------------------------------------------------------------------|
 
 * Installation
 
