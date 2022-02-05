@@ -66,8 +66,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, \
 				  "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]          = { "st", NULL };
-static const char *rclip_copycmd[]    = { "clipboard-cli-copy", NULL };
-static const char *rclip_pastecmd[]   = { "clipboard-cli-paste", NULL };
+static const char *rclip_copycmd[]    = { "/bin/sh", "-c", "clipboard-client --server-host 10.0.2.2 --command WRITE", NULL };
+static const char *rclip_pastecmd[]   = { "/bin/sh", "-c", "clipboard-client --server-host 10.0.2.2", NULL };
 static const char *zoomcmd[]          = { "boomer", NULL };
 static const char *lockcmd[]          = { "slock", NULL };
 static const char *volmutecmd[]       = { "amixer", "-q", "set", "Master", "toggle", NULL };
