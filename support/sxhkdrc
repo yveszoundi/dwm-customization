@@ -1,0 +1,81 @@
+# applications
+ctrl + t; r
+    pkill -USR1 -x sxhkd
+    
+Print
+	img="$HOME/Pictures/`date +%Y_%m_%d_%H_%M_%S`.png"; \
+	import $img; \
+	xclip -selection clipboard -t image/png < $img;
+
+XF86AudioMute
+    amixer -q set Master toggle
+    
+XF86AudioRaiseVolume
+    amixer -q set Master 5%+
+    
+XF86AudioLowerVolume
+    amixer -q set Master 5%-
+
+XF86MonBrightness{Down,Up}
+	brightnessctl s 5%{-,+}
+
+ctrl + t; c
+	st
+
+ctrl + t; Return
+	dmenu_run
+
+ctrl + t; shift + c
+	rclip-copy
+
+ctrl + t; shift + v
+	rclip-paste
+
+# dwm
+ctrl + t; space
+	dwmc setlayoutex 0
+
+ctrl + t; shift space
+	dwmc togglefloating 0
+  
+ctrl + t; {n,p}
+	dwmc focusstack {-,+}1
+
+ctrl + t; shift + {k,j}
+	dwmc movestack {-,+}1
+
+ctrl + t; shift + {bracketleft,bracketright}
+	dwmc setmfact {-,+}0.05
+
+ctrl + t; {bracketleft,bracketright}
+	dwmc incmaster {-,+}1
+
+ctrl + t; b
+	dwmc togglebar
+
+ctrl + t; l
+	slock
+
+ctrl + t; z
+	boomer
+
+ctrl + t; shift + space
+	dwmc togglefloating
+
+ctrl + t; k
+	dwmc killclient
+
+ctrl + t; q
+	dwmc quit
+
+ctrl + t; v
+	dwmc view
+
+ctrl + t; {t,f,m}
+	dwmc setlayoutex {0,1,2}
+
+ctrl + t; {_,ctrl +}{_,shift +} {1-9}
+	dwmc {_,toggle}{viewex,tagex} {0-8}
+
+ctrl + t; 0
+	dwmc viewall

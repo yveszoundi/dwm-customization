@@ -1,0 +1,13 @@
+#!/usr/bin/env ksh
+
+. $HOME/.profile
+. $HOME/.kshrc
+
+output_device=$(xrandr --query | grep -i connected | awk '{print $1}')
+xrandr --auto --output ${output_device} --mode 1440x900
+
+setxkbmap -option ctrl:swapcaps
+
+xrdb -load $XRESOURCES
+
+exec /usr/local/bin/dwm

@@ -1,17 +1,19 @@
 #+TITLE: DWM window manager customizations
 
-This is my [[https://dwm.suckless.org/][dwm]] configuration using [[https://www.gnu.org/software/emacs/][Emacs-like]] or [[https://www.nongnu.org/ratpoison/][Ratpoison]] like keybindings (default prefix set to =Ctrl-t=): please refer to the =config.def.h= file.
+This is my [[https://dwm.suckless.org/][dwm]] configuration with keyboard shortcuts externalized (see [[https://github.com/yveszoundi/vms-setup/blob/master/skeletons/.config/sxhkd/sxhkdrc][sample configuration]] with [[https://github.com/baskerville/sxhkd][sxhkd]]).
 Additional =mk= files to allow building transparently on both Linux and BSD (NetBSD, OpenBSD and FreeBSD).
+
+*Warning*: You MUST run a keyboard daemon such as sxhkd, all default shortcuts have been un-configured.
 
 * Customization
 
-|--------------------------+---------------------------------------------------------------|
-| Patch                    | Description                                                   |
-|--------------------------+---------------------------------------------------------------|
-| Prefix style keybindings | Key sequences for the MOD key (i.e. =CTRL+t=)                 |
-| [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]                 | Compatibility with programs requesting workspace information. |
-| [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]                     | Move automatically the mouse cursor to the focused window.    |
-|--------------------------+---------------------------------------------------------------|
+|----------+---------------------------------------------------------------|
+| Patch    | Description                                                   |
+|----------+---------------------------------------------------------------|
+| [[https://dwm.suckless.org/patches/dwmc/][dwmc]]     | Externalized interaction with DWM                             |
+| [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]] | Compatibility with programs requesting workspace information. |
+| [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]     | Move automatically the mouse cursor to the focused window.    |
+|----------+---------------------------------------------------------------|
 
 
 * Requirements
@@ -30,6 +32,8 @@ Additionally, please note that the following software dependencies are reference
 | [[https://imagemagick.org/index.php][imagemagick]] | Take screenshots                                                           |
 | [[https://linux.die.net/man/1/xclip][xclip]]       | Copy screenshots to the clipboard, also act as an [[https://github.com/yveszoundi/rclip][rclip]] helper tool        |
 | [[https://github.com/yveszoundi/rclip][rclip]]       | Minimal clipboard sharing solution over the network (i.e. across [[https://www.qemu.org/][QEMU]] VMs) |
+| [[https://github.com/baskerville/sxhkd][sxhkd]]       | Local daemon managing keyboard shortcuts                                   |
+| [[https://linux.die.net/man/1/xsetroot][xsetroot]]    | This is needed by a dwm patch script (dwmc)                                |
 |-------------+----------------------------------------------------------------------------|
 
 * Installation
@@ -42,8 +46,11 @@ You can build and copy the resulting =dwm= binary at the location of your choice
 
 * Running dwm
 
-- If using a [[https://wiki.archlinux.org/title/Display_manager][display manager]] such as [[https://wiki.archlinux.org/title/LightDM][LightDM]], copy the =dwm.desktop= file to =/usr/share/xessions=.
-- For XDM you only need an executable =.xsession= file (=exec /usr/local/bin/dwm=).
+Please also check the =support= directory of this repository for sample configuration files.
+
+- If using a [[https://wiki.archlinux.org/title/Display_manager][display manager]], please take a look at the various =.desktop= files in the =support= folder.
+  - For XDM you need an executable =.xsession= file (=exec /usr/local/bin/dwm=).
+  - If you need to run multiple programs such as x
 - Alternatively in a TTY, run =startx /usr/local/bin/dwm=.
 
 * Screenshot
