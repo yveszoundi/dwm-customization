@@ -3,7 +3,7 @@
 This is my [[https://dwm.suckless.org/][dwm]] configuration with keyboard shortcuts externalized (see [[https://github.com/yveszoundi/vms-setup/blob/master/skeletons/.config/sxhkd/sxhkdrc][sample configuration]] with [[https://github.com/baskerville/sxhkd][sxhkd]]).
 Additional =mk= files to allow building transparently on both Linux and BSD (NetBSD, OpenBSD and FreeBSD).
 
-*Warning*: You MUST run a keyboard daemon such as sxhkd, all default shortcuts have been un-configured.
+/*Warning: You MUST run a keyboard daemon such as sxhkd, all default shortcuts have been un-configured.*/
 
 * Customization
 
