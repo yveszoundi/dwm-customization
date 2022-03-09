@@ -20,8 +20,21 @@ Additional =mk= files to allow building transparently on both Linux and BSD (Net
 
 * Requirements
 
-In order to build =dwm= you need make, a C compiler and some Xlib header *dev* files (Xinerama and freetype2 dev libraries, a C compiler and make).
-Additionally, please note that the following software dependencies are referenced in =config.def.h=.
+** Build requirements
+
+In order to build =dwm= you need make, a C compiler and couple of other libraries.
+
+#+begin_src sh
+  sudo apt-get install build-essential \
+       libx11-dev \
+       libxft-dev \
+       libxinerama-dev \
+       libfreetype6-dev
+#+end_src
+
+** Runtime requirements
+
+Additionally, please note that the following software dependencies are referenced in the sample =support/sxhkdrc=.
 
 |-------------+----------------------------------------------------------------------------|
 | Software    | Usage                                                                      |
@@ -43,7 +56,7 @@ Additionally, please note that the following software dependencies are reference
 You can build and copy the resulting =dwm= binary at the location of your choice (such as in =/usr/local/bin=).
 
 #+BEGIN_SRC sh
-  make && sudo cp dwm /usr/local/bin
+  make && sudo cp dwm dwmc /usr/local/bin
 #+END_SRC
 
 * Running dwm
