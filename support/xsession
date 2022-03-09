@@ -10,4 +10,5 @@ setxkbmap -option ctrl:swapcaps
 
 xrdb -load $XRESOURCES
 sxhkd&
+
 exec /usr/local/bin/dwm

@@ -7,13 +7,15 @@ Additional =mk= files to allow building transparently on both Linux and BSD (Net
 
 * Customization
 
-|----------+---------------------------------------------------------------|
-| Patch    | Description                                                   |
-|----------+---------------------------------------------------------------|
-| [[https://dwm.suckless.org/patches/dwmc/][dwmc]]     | Externalized interaction with DWM                             |
-| [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]] | Compatibility with programs requesting workspace information. |
-| [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]     | Move automatically the mouse cursor to the focused window.    |
-|----------+---------------------------------------------------------------|
+|-----------+--------------------------------------------------------------------------|
+| Patch     | Description                                                              |
+|-----------+--------------------------------------------------------------------------|
+| [[https://dwm.suckless.org/patches/dwmc/][dwmc]]      | Externalized interaction with DWM                                        |
+| [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]  | Compatibility with programs requesting workspace information.            |
+| [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]      | Move automatically the mouse cursor to the focused window.               |
+| [[https://dwm.suckless.org/patches/autostart/][autostart]] | Run scripts on startup                                                   |
+| custom    | Disabled default keyboard event handling, as those are handled via sxhkd |
+|-----------+--------------------------------------------------------------------------|
 
 
 * Requirements
@@ -48,10 +50,13 @@ You can build and copy the resulting =dwm= binary at the location of your choice
 
 Please also check the =support= directory of this repository for sample configuration files.
 
-- If using a [[https://wiki.archlinux.org/title/Display_manager][display manager]], please take a look at the various =.desktop= files in the =support= folder.
-  - For XDM you need an executable =.xsession= file (=exec /usr/local/bin/dwm=).
-  - If you need to run multiple programs such as x
-- Alternatively in a TTY, run =startx /usr/local/bin/dwm=.
+If you're starting the display server (X) from the command line please use the
+- If using a [[https://wiki.archlinux.org/title/Display_manager][display manager]]
+  - XDM will expect an executable =.xsession= file (see the =support= folder for an example).
+  - For GDM, LightDM and others
+    - If you want to use the default =dwm.desktop= file, you need a /dwm autostart/ script for loading your keybindings (=sxhkd= or the keyboard daemon of your choice)
+    - Otherwise, you can create a custom desktop file and configure all the default initilized applications in your .xsession file (see =custom-x11*.desktop= files in the =support= directory)
+- If you're starting /dwm/ from the command line, either create a =.xsession= file (also symlink it to =.xinitrc=) or set a /dwm autostart/ script.
 
 * Screenshot
 
