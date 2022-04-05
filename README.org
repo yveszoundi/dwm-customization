@@ -14,6 +14,7 @@ Additional =mk= files to allow building transparently on both Linux and BSD (Net
 | [[https://dwm.suckless.org/patches/ewmhtags/][emwhtags]]  | Compatibility with programs requesting workspace information.            |
 | [[https://dwm.suckless.org/patches/warp/dwm-warp-6.1.diff][warp]]      | Move automatically the mouse cursor to the focused window.               |
 | [[https://dwm.suckless.org/patches/autostart/][autostart]] | Run scripts on startup                                                   |
+| [[https://dwm.suckless.org/patches/xrdb/][xrdb]]      | Xresources colors support                                                |
 | custom    | Disabled default keyboard event handling, as those are handled via sxhkd |
 |-----------+--------------------------------------------------------------------------|
 
