@@ -9,8 +9,8 @@ MANPREFIX = ${PREFIX}/share/man
 
 # Linking
 FREETYPELIBS = -lfontconfig -lXft
-XINERAMALIBS  = -lXinerama
-XINERAMAFLAGS = -DXINERAMA
+#XINERAMALIBS  = -lXinerama
+#XINERAMAFLAGS = -DXINERAMA
 
 # compiler and linker
 CC = cc
