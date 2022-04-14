@@ -54,10 +54,10 @@ Additionally, please note that the following software dependencies are reference
 
 * Installation
 
-You can build and copy the resulting =dwm= binary at the location of your choice (such as in =/usr/local/bin=).
+The default =install= target will place the relevant binaries in =/usr/local/bin=.
 
 #+BEGIN_SRC sh
-  make && sudo cp dwm dwmc /usr/local/bin
+  sudo make install
 #+END_SRC
 
 * Running dwm
@@ -74,4 +74,6 @@ If you're starting the display server (X) from the command line please use the
 
 * Screenshot
 
-[[file:images/screenshot_fedora.png]]
+=dwm 6.3= on Void Linux with =dmenu= and 2 =st= windows open (=top= and =emacs= running).
+
+[[file:images/screenshot_voidlinux.png]]
